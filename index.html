@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width,initial-scale=1'>
+        
+        <title>Movie Date</title>
+
+        <style>
+body{margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:linear-gradient(135deg,#66b3ff,#dff4ff);
+    font-family:Arial;overflow:hidden}
+
+.heart{position:fixed;
+    bottom:-20px;
+    font-size:22px;
+    animation:f 8s linear infinite}
+
+@keyframes f
+{to{transform:translateY(-110vh);opacity:0}}
+
+.card
+{background:#fff;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    text-align:center;max-width:420px}
+
+.buttons{display:flex;
+    justify-content:center;
+    gap:16px}
+
+button{padding:12px 24px
+    ;border:none;
+    border-radius:30px;
+    font-size:18px;
+    cursor:pointer}
+
+#yes
+{background:#1e88e5;
+    color:#fff}
+    
+#no{background:#e74c3c;
+    color:#fff}
+
+#result{display:none}
+
+</style>
+</head>
+
+<body>
+
+<div class='card' id='q'>
+    <h2>Will you go on a Spider‑Man date with me? 🕷️💙</h2>
+    <div class='buttons'>
+        <button id='yes'>YES 💙</button>
+        <button id='no'>NO</button>
+    </div>
+</div>
+
+<div class='card' id='result'>
+    <h1>YAY!! 💙</h1>
+    <p>🕷️ Spider‑Man Movie Date</p>
+    <p>📍 SM Sta. Rosa</p>
+    <p>🗓️ August 2</p>
+    <p>🕒 3:30 PM</p>
+    <p>I can't wait to see you ❤️</p>
+    
+</div>
+
+<script>
+const no=document.getElementById('no'),yes=document.getElementById('yes');
+const msgs=['Are you sure? 🥺','Think again 😭','Pretty please 💙','You can\'t catch me 😜','Just press YES 😂'];
+let i=0,s=1;
+function mv(){
+    no.style.position='fixed';
+    no.textContent=msgs[Math.min(i,msgs.length-1)];
+
+const x=Math.random()*(innerWidth-no.offsetWidth-20),y=Math.random()*(innerHeight-no.offsetHeight-20);
+no.style.left=x+'px';no.style.top=y+'px';
+i++;s+=.1;
+yes.style.transform='scale('+s+')';}
+no.onmouseover=mv;no.onclick=mv;
+yes.onclick=()=>{q.style.display='none';no.style.display='none';result.style.display='block';conf();}
+
+function conf(){
+    for(let j=0;j<120;j++){
+        let h=document.createElement('div');
+        h.className='heart';
+        h.textContent='💙';
+        h.style.left=Math.random()*100+'vw';
+        h.style.animationDuration=(4+Math.random()*4)+'s';
+        document.body.appendChild(h);
+        
+setTimeout(()=>h.remove(),8000);}}
+
+setInterval(
+    ()=>{let h=document.createElement('div');
+    h.className='heart';
+    h.textContent='💙';
+    h.style.left=Math.random()*100+'vw';
+    h.style.animationDuration=(6+Math.random()*3)+'s'
+    ;document.body.appendChild(h);
+    
+setTimeout(()=>h.remove(),9000);},350);
+
+</script>
+</body>
+</html>
